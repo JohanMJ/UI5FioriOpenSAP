@@ -1,4 +1,8 @@
-<mvc:View displayBlock="true" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+<mvc:View 
+	displayBlock="true"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" 
+	controllerName="opensap.myapp.controller.App">
 	<Carousel>
 		<pages>
 			<Image src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg" height="200px"/>
@@ -6,4 +10,5 @@
 			<Image src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg" height="200px"/>
 		</pages>
 	</Carousel>
+	<Button text="OK" press="onPressOK"></Button>
 </mvc:View>
