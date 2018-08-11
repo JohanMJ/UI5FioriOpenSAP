@@ -1,14 +1,15 @@
 <mvc:View 
-	displayBlock="true"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m" 
-	controllerName="opensap.myapp.controller.App">
+    displayBlock="true" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    controllerName="opensap.myapp.controller.App">
 	<Carousel>
 		<pages>
 			<Image src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg" height="200px"/>
-			<Image src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg" height="200px"/>
-			<Image src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg" height="200px"/>
+			<Image src="http://1000logos.net/wp-content/uploads/2016/11/Coca-Cola-Logo.png" height="200px"/>
+			<Image src="https://cdn.worldvectorlogo.com/logos/sprite-cero.svg" height="200px"/>
 		</pages>
 	</Carousel>
-	<Button text="OK" press="onPressOK"></Button>
+		<Button text="{i18n>showOKButtonText}" press="onPressOK"></Button>
+	<Input value="{okPanel>/recipient/name}" description=" [ Description of input ;) ] : {okPanel>/recipient/name}" valueLiveUpdate="true" width="60%"/>
 </mvc:View>
