@@ -48,24 +48,29 @@
 									<Button text="{i18n>layoutDraftButton}" icon="sap-icon://save"/>
 								</Toolbar>
 							</IconTabFilter>
-							<IconTabFilter 
-								text="Data Biding" 
-								key="db">
-									<List 
-									headerText="Products"
-									width="auto"
-									items="{/ProductSet}">
-										<items>
-											<ObjectListItem 
-											title="{Name}"
-											number="{Price}"
-											intro="{ProductID}"
-											numberUnit="{CurrencyCode}"
-											>
-											</ObjectListItem>
-										</items>
-										
-									</List>
+							<IconTabFilter text="{i18n>dataBindingFilter}" key="db">
+								<List headerText="{i18n>productListTitle}" width="auto" items="{/ProductSet}">
+									<items>
+										<ObjectListItem 
+										title="{Name}"
+										number="{Price}" 
+										numberState="{= ${Price} > 500 ? 'Error' : 'Success'}" 
+										intro="{ProductID}" 
+										numberUnit="{CurrencyCode}">
+										<firstStatus>
+											<ObjectStatus
+												text = "{
+													parts: [
+														{path: 'WeightUnit'},
+														{path: 'WeightMeasure'}
+													],
+													formatter : '.formatter.delivery'
+												}">
+											</ObjectStatus>
+										</firstStatus>
+										</ObjectListItem>
+									</items>
+								</List>
 							</IconTabFilter>
 						</items>
 					</IconTabBar>
