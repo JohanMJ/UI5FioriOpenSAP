@@ -4,19 +4,20 @@ sap.ui.define([], function () {
 	return {
 		delivery: function (iWeight, sMeasure) {
 			var sResult = "";
+			var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
 
 			if (sMeasure === "G") {
 				iWeight = iWeight / 1000;
 			}
-			
+
 			if (iWeight < 0.5) {
-				sResult = "Mail Delivery";
+				sResult = oResourceBundle.getText("formatterMailDelivery");
 			} else if (iWeight < 5) {
-				sResult = "Parcial Delivery";
+				sResult = oResourceBundle.getText("formatterParcelDelivery");
 			} else {
-				sResult = "Carried Delivery";
+				sResult = oResourceBundle.getText("formatterCarrierDelivery");
 			}
-			
+
 			return sResult;
 		}
 	};

@@ -15,7 +15,19 @@
 									</pages>
 								</Carousel>
 								<Button text="{i18n>showOKButtonText}" press="onPressOK"></Button>
-								<Input value="{okPanel>/recipient/name}" description=" [ Description of input ;) ] : {okPanel>/recipient/name}" valueLiveUpdate="true"
+								<Input 
+									value="{
+										path : 'okPanel>/recipient/name',
+										type : 'sap.ui.model.type.Float',
+										
+											formatOptions : { 
+												minFractionDigits: 2
+											},
+											constraints : {
+												maximum: 3000
+											}
+										}" 
+									description="{okPanel>/recipient/name}" 
 									width="60%"/>
 							</IconTabFilter>
 							<IconTabFilter id="layouts" text="{i18n>layoutFilter}">
@@ -53,7 +65,18 @@
 									<items>
 										<ObjectListItem 
 										title="{Name}"
-										number="{Price}" 
+										number="{
+											parts: [
+												{path: 'Price'},
+												{path: 'CurrencyCode'}
+											],
+											
+											type : 'sap.ui.model.type.Currency',
+											formatOptions: {
+												showMeasure: false
+											}
+										
+										}" 
 										numberState="{= ${Price} > 500 ? 'Error' : 'Success'}" 
 										intro="{ProductID}" 
 										numberUnit="{CurrencyCode}">
