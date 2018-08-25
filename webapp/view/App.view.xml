@@ -1,5 +1,11 @@
-<mvc:View displayBlock="true" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="opensap.myapp.controller.App"
-	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+<mvc:View
+	displayBlock="true"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	controllerName="opensap.myapp.controller.App"
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout" 
+	xmlns:f="sap.ui.layout.form" >
 	<App>
 		<pages>
 			<Page title="openSAP - Developing with SAPUI5">
@@ -9,9 +15,9 @@
 							<IconTabFilter id="start" text="{i18n>gettingStartedFilter}">
 								<Carousel>
 									<pages>
-										<Image src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg" height="200px"/>
+<!--									<Image src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg" height="200px"/>
 										<Image src="http://1000logos.net/wp-content/uploads/2016/11/Coca-Cola-Logo.png" height="200px"/>
-										<Image src="https://cdn.worldvectorlogo.com/logos/sprite-cero.svg" height="200px"/>
+										<Image src="https://cdn.worldvectorlogo.com/logos/sprite-cero.svg" height="200px"/>-->
 									</pages>
 								</Carousel>
 								<Button text="{i18n>showOKButtonText}" press="onPressOK"></Button>
@@ -59,17 +65,27 @@
 									<Button text="{i18n>layoutPublishButton}" icon="sap-icon://outbox" type="Accept"/>
 									<Button text="{i18n>layoutDraftButton}" icon="sap-icon://save"/>
 								</Toolbar>
+	
 							</IconTabFilter>
 							<IconTabFilter text="{i18n>dataBindingFilter}" key="db">
 								<List 
 									id="productsList"
 									items="{
 										path:  '/ProductSet',
+										parameters: {
+                                        	expand: 'ToSupplier'
+                                    	},
 										sorter: { 
 												path: 'Category',
 												group: true
 											}
-										}">
+									
+										}"
+										growing="true"
+										growingThreshold="5"
+										growingScrollToLoad="false"
+										mode="SingleSelectMaster"
+										selectionChange="onItemSelected">
 									<headerToolbar>
 										<Toolbar>
 											<Title text="{i18n>productListTitle}"/>
@@ -106,9 +122,24 @@
 												}">
 											</ObjectStatus>
 										</firstStatus>
+										<secondStatus>
+											<ObjectStatus
+												title="{i18n>titleSecondStatus}"
+												text="{ToSupplier/Address/City}" />
+										</secondStatus>
 										</ObjectListItem>
 									</items>
 								</List>
+								<Panel id="productDetailsPanel"
+										headerText="{i18n>panelTitle}"
+										visible ="false">
+									<l:Grid>
+										<Text text="{i18n>productId}: {ProductID}"/> 
+										<Text text="{i18n>productName}: {Name}"/> 
+										<Text text="{i18n>productDescription}: {Description}"/> 
+										<Text text="{i18n>productPrice}: {Price}"/> 
+									</l:Grid>
+								</Panel>
 							</IconTabFilter>
 						</items>
 					</IconTabBar>
